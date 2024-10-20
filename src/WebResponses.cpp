@@ -318,7 +318,7 @@ size_t AsyncAbstractResponse::_ack(AsyncWebServerRequest *request, size_t len, u
           return 0;
       }
       outLen = sprintf((char*)buf+headLen, "%x", readLen) + headLen;
-      while(outLen < headLen + 4) buf[outLen++] = ' ';
+      // This breaks Safari 18.1: while(outLen < headLen + 4) buf[outLen++] = ' ';
       buf[outLen++] = '\r';
       buf[outLen++] = '\n';
       outLen += readLen;
